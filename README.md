@@ -44,63 +44,55 @@ Check that Python and Azure CLI are available:
 python --version
 az --version
 ````
-
-## Quick Setup
-
-### 1. Clone the repository
-
+Quick Setup
+1. Clone the repository
 git clone https://github.com/udayabhaskar/azure-resource-audit.git
 cd azure-resource-audit
-
-### 2. Create a Python virtual environment
-
+2. Create a Python virtual environment
 python -m venv .venv
 
 Activate it:
 
 .\.venv\Scripts\Activate.ps1
-
-### 3. Install dependencies
-
+3. Install dependencies
 pip install -r requirements.txt
 
-pip check
+Optional:
 
-### 4. Login to Azure. The tool uses your Azure CLI login:
+pip check
+4. Login to Azure
+
+The tool uses your Azure CLI login:
 
 az login
-
-### 5. Run the audit
-
+5. Run the audit
 python run.py
 
 The tool will display the Azure subscriptions available to your account and ask you to select one.
 
 The generated Excel report will be available under:
+
 output/
 
 Logs will be available under:
-logs/
 
-## Cost Configuration
+logs/
+Cost Configuration
 
 Cost collection is optional.
 
 The configuration file is:
+
 config/config.yaml
 
 To disable cost collection:
 
-```yaml
 cost:
   enabled: false
-```
 
 To enable cost collection:
 
-```yaml
 cost:
   enabled: true
-```
 
-When cost collection is disabled or unavailable, the report shows `N/A` for Monthly Cost.
+When cost collection is disabled or unavailable, the report shows N/A for Monthly Cost.
