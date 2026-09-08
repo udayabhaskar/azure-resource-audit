@@ -1,3 +1,4 @@
+
 # Azure Resource Audit Tool
 
 A Python tool I built to quickly audit Azure resources across a subscription and generate an Excel inventory report.
@@ -29,26 +30,6 @@ If Owner or Environment information isn't available, it shows `Unknown`.
 
 If SKU or State isn't available, it shows `N/A`.
 
-## Supported resource states
-
-State information is currently collected for:
-
-- Virtual Machines
-- Managed Disks
-- App Services
-- App Service Plans
-- Azure SQL
-- Azure Storage
-- PostgreSQL Flexible Server
-- MySQL Flexible Server
-- Key Vault
-- Azure Container Apps
-- Azure Service Bus
-
-Not every Azure resource exposes a useful operational state through the management APIs. Those resources are still included in the report, but their state is shown as `N/A`.
-
-The state collection is implemented using separate providers, so additional Azure services can be added later without changing the main audit logic.
-
 ## Requirements
 
 You'll need:
@@ -62,3 +43,64 @@ Check that Python and Azure CLI are available:
 ```powershell
 python --version
 az --version
+````
+
+## Quick Setup
+
+### 1. Clone the repository
+
+git clone https://github.com/udayabhaskar/azure-resource-audit.git
+cd azure-resource-audit
+
+### 2. Create a Python virtual environment
+
+python -m venv .venv
+
+Activate it:
+
+.\.venv\Scripts\Activate.ps1
+
+### 3. Install dependencies
+
+pip install -r requirements.txt
+
+pip check
+
+### 4. Login to Azure. The tool uses your Azure CLI login:
+
+az login
+
+### 5. Run the audit
+
+python run.py
+
+The tool will display the Azure subscriptions available to your account and ask you to select one.
+
+The generated Excel report will be available under:
+output/
+
+Logs will be available under:
+logs/
+
+## Cost Configuration
+
+Cost collection is optional.
+
+The configuration file is:
+config/config.yaml
+
+To disable cost collection:
+
+```yaml
+cost:
+  enabled: false
+```
+
+To enable cost collection:
+
+```yaml
+cost:
+  enabled: true
+```
+
+When cost collection is disabled or unavailable, the report shows `N/A` for Monthly Cost.
