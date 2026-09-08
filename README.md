@@ -1,6 +1,6 @@
 # Azure Resource Audit Tool
 
-A small Python tool I built to quickly audit Azure resources across a subscription and generate an Excel inventory report.
+A Python tool I built to quickly audit Azure resources across a subscription and generate an Excel inventory report.
 
 The main goal is to get a simple view of what resources exist, where they are, what state they are in, who owns them, which environment they belong to, and their SKU.
 
